@@ -1,19 +1,62 @@
-from sqlalchemy import create_engine
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
+from flask import Flask, request, jsonify
+from database import Session
+from datetime import datetime
 
-# Database connection string
-DATABASE_URI = "postgresql://username:password@localhost/dbname"
+# Import your models here, e.g.
+# from models import HealthData
 
-# Create an engine for the database connection
-engine = create_engine(DATABASE_URI)
+# ...
 
-# Create a session factory for the engine
-Session = sessionmaker(bind=engine)
+# Replace this line:
+# db = SQLAlchemy(app)
 
-# Create a declarative base for the models
-Base = declarative_base()
+# With this line:
+session_factory = Session()
+session = session_factory()
 
-# Connect to the database and create the schema if it doesn't exist
-engine.connect()
-Base.metadata.create_all(engine)
+# ...
+
+# Replace this line:
+# health_data = HealthData(heart_rate=data['heart_rate'], ...)
+
+# With this line:
+health_data = HealthData(heart_rate=data['heart_rate'], ..., timestamp=datetime.utcnow())
+
+# Add this line after creating the health_data object:
+session.add(health_data)
+
+# Replace this line:
+# db.session.commit()
+
+# With this line:
+session.commit()
+
+# ...
+
+# Replace this line:
+# data = HealthData.query.order_by(HealthData.timestamp.desc()).first()
+
+# With this line:
+data = session.query(HealthData).order_by(HealthData.timestamp.desc()).first()
+
+# ...
+
+# Replace this line:
+# db.session.delete(health_data)
+
+# With this line:
+session.delete(health_data)
+
+# Replace this line:
+# db.session.commit()
+
+# With this line:
+session.commit()
+
+# ...
+
+# Replace this line:
+# session.close()
+
+# With this line:
+session.remove()
