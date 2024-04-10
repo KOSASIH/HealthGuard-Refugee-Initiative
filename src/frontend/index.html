@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthGuard Refugee Initiative</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f5f5f5;
+        }
+        .container {
+            text-align: center;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 0.5em;
+        }
+        p {
+            font-size: 1.2em;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>HealthGuard Refugee Initiative</h1>
+        <p>Welcome to the high-tech AI system for monitoring the health of refugees.</p>
+        <button id="getHealthData">Get Health Data</button>
+        <button id="updateHealthData">Update Health Data</button>
+        <button id="deleteHealthData">Delete Health Data</button>
+        <div id="healthData"></div>
+    </div>
+    <script>
+        // Get the health data from the backend
+        function getHealthData() {
+            fetch('/health')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('healthData').innerHTML = `
+                        <p>Heart Rate: ${data.heart_rate}</p>
+                        <p>Blood Pressure: ${data.blood_pressure}</p>
+                        <p>Temperature: ${data.temperature}</p>
+                        <p>Timestamp: ${data.timestamp}</p>
+                    `;
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        // Update the health data on the backend
+        function updateHealthData() {
+            const data = {
+                heart_rate: Math.floor(Math.random() * 100),
+                blood_pressure: Math.floor(Math.random() * 100) + '/' + Math.floor(Math.random() * 100),
+                temperature: Math.floor(Math.random() * 40) + 36
+            };
+            fetch('/health', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('healthData').innerHTML = `
+                        <p>Health Data Updated</p>
+                        <p>Heart Rate: ${data.heart_rate}</p>
+                        <p>Blood Pressure: ${data.blood_pressure}</p>
+                        <p>Temperature: ${data.temperature}</p>
+                        <p>Timestamp: ${data.timestamp}</p>
+                    `;
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        // Delete the health data on the backend
+        function deleteHealthData() {
+            fetch('/health', {
+                method: 'DELETE'
+            })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('healthData').innerHTML = `
+                        <p>Health Data Deleted</p>
+                    `;
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        // Get the health data when the page loads
+        window.onload = getHealthData;
+
+        // Attach click event listeners to the buttons
+        document.getElementById('getHealthData').addEventListener('click', getHealthData);
+        document.getElementById('updateHealthData').addEventListener('click', updateHealthData);
+        document.getElementById('deleteHealthData').addEventListener('click', deleteHealthData);
+    </script>
+</body>
+</html>
