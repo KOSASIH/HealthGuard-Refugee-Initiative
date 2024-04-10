@@ -1,4 +1,4 @@
-# HealthGuard-Refugee-Initiative
+ew# HealthGuard-Refugee-Initiative
 This repository hosts the codebase and documentation for the HealthGuard Refugee Initiative, a super advanced high-tech solution designed to handle the health of refugees and refugee children. The repository includes modules for data collection, AI algorithms for health monitoring, telemedicine integration, and user interface components for seamless interaction with the system. Collaborators are welcome to contribute to this humanitarian project aimed at improving healthcare access for vulnerable populations.
 
 ```markdown
@@ -46,7 +46,11 @@ The HealthGuard Refugee Initiative is licensed under the MIT License, allowing f
 
 ## Contact
 
-For more information about the HealthGuard Refugee Initiative, please contact the project team at healthguard@example.com.
+For more information about the HealthGuard Refugee Initiative, please contact the project team at healthguard@healthguard.com.
 
 ```
+# Join Us !! 
+
+https://mithackmedicine-refugee-hackathon.mn.co/share/_MsrkOmWgHKcAp12?utm_source=manual
+
 This README provides a concise overview of the HealthGuard Refugee Initiative repository, including its purpose, features, how to get started, contribution guidelines, licensing information, and contact details. Adjustments can be made based on specific project requirements and preferences.
