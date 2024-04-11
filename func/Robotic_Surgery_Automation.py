@@ -1,10 +1,12 @@
 import time
-import numpy as np
+
 import cv2
+import numpy as np
 import pyautogui
 import pywinauto
-import win32com.client
 import qnx
+import win32com.client
+
 
 def move_robot_arm(arm, x, y, z):
     """
@@ -22,6 +24,7 @@ def move_robot_arm(arm, x, y, z):
     robot = qnx.Robot()
     robot.move_arm(arm, x, y, z)
 
+
 def adjust_camera(camera, angle, zoom):
     """
     Adjust the camera to a specific angle and zoom level.
@@ -33,9 +36,10 @@ def adjust_camera(camera, angle, zoom):
 
     Returns:
     None
-"""
+    """
     camera.angle = angle
     camera.zoom = zoom
+
 
 def start_automated_surgery(patient_data):
     """
@@ -53,8 +57,8 @@ def start_automated_surgery(patient_data):
 
     # Adjust the camera and robot arm to their starting positions
     adjust_camera(camera, 0, 0)
-    move_robot_arm('left', 0, 0, 0)
-    move_robot_arm('right', 0, 0, 0)
+    move_robot_arm("left", 0, 0, 0)
+    move_robot_arm("right", 0, 0, 0)
 
     # Begin the automated surgery
     ...
@@ -63,12 +67,14 @@ def start_automated_surgery(patient_data):
     camera.release()
     robot.disconnect()
 
+
 def main():
     # Load patient data
-    patient_data = load_patient_data('patient.csv')
+    patient_data = load_patient_data("patient.csv")
 
     # Start the automated surgery
     start_automated_surgery(patient_data)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()
