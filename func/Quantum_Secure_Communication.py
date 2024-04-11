@@ -1,5 +1,6 @@
 import qkd
 
+
 def establish_quantum_secure_communication(public_key, receiver):
     """
     Establish a quantum-secure communication channel between the sender and the receiver.
@@ -19,6 +20,7 @@ def establish_quantum_secure_communication(public_key, receiver):
 
     # Print the secret key
     print(f"Secret key: {secret_key}")
+
 
 # Example usage:
 if __name__ == "__main__":
