@@ -1,12 +1,14 @@
-import time
 import threading
-import numpy as np
+import time
+
 import cyborg
-import cyborg.core
-import cyborg.interfaces
-import cyborg.devices
-import cyborg.sensors
 import cyborg.actuators
+import cyborg.core
+import cyborg.devices
+import cyborg.interfaces
+import cyborg.sensors
+import numpy as np
+
 
 def connect_cyborg_interface(interface_type, interface_params):
     """
@@ -25,11 +27,11 @@ def connect_cyborg_interface(interface_type, interface_params):
     """
 
     # Connect to the interface
-    if interface_type == 'sensor':
+    if interface_type == "sensor":
         interface = cyborg.sensors.Sensor(**interface_params)
-    elif interface_type == 'actuator':
+    elif interface_type == "actuator":
         interface = cyborg.actuators.Actuator(**interface_params)
-    elif interface_type == 'device':
+    elif interface_type == "device":
         interface = cyborg.devices.Device(**interface_params)
     else:
         raise ValueError("Invalid interface type")
@@ -38,6 +40,7 @@ def connect_cyborg_interface(interface_type, interface_params):
     interface.initialize()
 
     return interface
+
 
 def read_sensor_data(interface):
     """
@@ -57,6 +60,7 @@ def read_sensor_data(interface):
 
     return data
 
+
 def write_actuator_command(interface, command):
     """
     Function to write a command to a cyborg actuator interface.
@@ -70,6 +74,7 @@ def write_actuator_command(interface, command):
 
     # Write the command to the actuator interface
     interface.write(command)
+
 
 def control_cyborg_device(interface, command_function, data_function, interval=0.1):
     """
@@ -108,16 +113,20 @@ def control_cyborg_device(interface, command_function, data_function, interval=0
 
     threading.Thread(target=update_command).start()
 
+
 # Example usage
-interface_params = {'name': 'example_interface', 'port': '/dev/ttyACM0'}
-interface = connect_cyborg_interface('device', interface_params)
+interface_params = {"name": "example_interface", "port": "/dev/ttyACM0"}
+interface = connect_cyborg_interface("device", interface_params)
+
 
 def command_function(data):
     # Example command function that generates a command based on the sensor data
     return np.array([np.mean(data)])
 
+
 def data_function():
     # Example data function that extracts sensor data from the cyborg sensor interface
     return read_sensor_data(interface)
+
 
 control_cyborg_device(interface, command_function, data_function)
