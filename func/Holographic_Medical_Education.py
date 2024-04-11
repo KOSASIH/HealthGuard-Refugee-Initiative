@@ -1,24 +1,25 @@
 import holopy
 import holopy.core
-import holopy.plot
-import holopy.interactive
 import holopy.ext.holopy_gui as hg
 import holopy.ext.holopy_jupyter as hj
 import holopy.ext.holopy_sketch as hs
+import holopy.ext.holopy_sketch.sketch_cameras as sc
+import holopy.ext.holopy_sketch.sketch_events as se
+import holopy.ext.holopy_sketch.sketch_exporters as se
+import holopy.ext.holopy_sketch.sketch_geometry as sg
+import holopy.ext.holopy_sketch.sketch_interactions as si
+import holopy.ext.holopy_sketch.sketch_lights as sl
+import holopy.ext.holopy_sketch.sketch_materials as sm
 import holopy.ext.holopy_sketch.sketch_objects as so
+import holopy.ext.holopy_sketch.sketch_renderers as sr
+import holopy.ext.holopy_sketch.sketch_scenes as ss
 import holopy.ext.holopy_sketch.sketch_tools as st
+import holopy.ext.holopy_sketch.sketch_utils as su
 import holopy.ext.holopy_sketch.sketch_viewer as sv
 import holopy.ext.holopy_sketch.sketch_widgets as sw
-import holopy.ext.holopy_sketch.sketch_events as se
-import holopy.ext.holopy_sketch.sketch_geometry as sg
-import holopy.ext.holopy_sketch.sketch_materials as sm
-import holopy.ext.holopy_sketch.sketch_scenes as ss
-import holopy.ext.holopy_sketch.sketch_lights as sl
-import holopy.ext.holopy_sketch.sketch_cameras as sc
-import holopy.ext.holopy_sketch.sketch_renderers as sr
-import holopy.ext.holopy_sketch.sketch_interactions as si
-import holopy.ext.holopy_sketch.sketch_utils as su
-import holopy.ext.holopy_sketch.sketch_exporters as se
+import holopy.interactive
+import holopy.plot
+
 
 def create_holographic_education_platform():
     """
@@ -72,6 +73,7 @@ def create_holographic_education_platform():
 
     return sketch
 
+
 def add_holographic_model(sketch, model_path):
     """
     Add a holographic model to the sketch.
@@ -82,6 +84,7 @@ def add_holographic_model(sketch, model_path):
     # Add the model to the scene
     scene = sketch.get_scene()
     scene.add_model(model)
+
 
 def add_holographic_simulation(sketch, simulation_path):
     """
@@ -94,6 +97,7 @@ def add_holographic_simulation(sketch, simulation_path):
     scene = sketch.get_scene()
     scene.add_simulation(simulation)
 
+
 def add_holographic_collaboration(sketch, collaboration_path):
     """
     Add a holographic collaboration to the sketch.
@@ -105,6 +109,7 @@ def add_holographic_collaboration(sketch, collaboration_path):
     scene = sketch.get_scene()
     scene.add_collaboration(collaboration)
 
+
 def run_holographic_education_platform(sketch):
     """
     Run the holographic medical education platform.
@@ -114,6 +119,7 @@ def run_holographic_education_platform(sketch):
 
     # Run the sketch
     sketch.run()
+
 
 # Example usage:
 sketch = create_holographic_education_platform()
