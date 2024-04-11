@@ -4,6 +4,7 @@ import torch
 from torch import nn
 from torch.optim import Adam
 
+
 def preprocess_data(data):
     """Preprocess the prosthesis sensor data.
 
@@ -20,6 +21,7 @@ def preprocess_data(data):
             and testing sets.
     """
     # Preprocessing code here
+
 
 def create_model(input_dim, output_dim):
     """Create a neural network model for predicting bionic prosthesis control signals.
@@ -42,10 +44,11 @@ def create_model(input_dim, output_dim):
         nn.ReLU(),
         nn.Linear(64, 128),
         nn.ReLU(),
-        nn.Linear(128, output_dim)
+        nn.Linear(128, output_dim),
     )
 
     return model
+
 
 def train_model(model, x_train, y_train, epochs=100, learning_rate=1e-3):
     """Train the neural network model.
@@ -83,6 +86,7 @@ def train_model(model, x_train, y_train, epochs=100, learning_rate=1e-3):
         print(f"Epoch {epoch+1}/{epochs}, Loss: {loss.item():.4f}")
 
     return model
+
 
 def evaluate_model(model, x_test, y_test):
     """Evaluate the neural network model.

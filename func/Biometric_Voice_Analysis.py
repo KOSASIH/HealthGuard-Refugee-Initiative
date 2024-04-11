@@ -3,6 +3,7 @@ import numpy as np
 import sklearn.ensemble
 import sklearn.preprocessing
 
+
 def extract_features(audio_file):
     """
     Extract features from an audio file using Librosa.
@@ -33,6 +34,7 @@ def extract_features(audio_file):
 
     return features
 
+
 def train_model(X_train, y_train):
     """
     Train a machine learning model to classify health conditions or emotional states based on voice features.
@@ -53,6 +55,7 @@ def train_model(X_train, y_train):
     model.fit(X_train_scaled, y_train)
 
     return model, scaler
+
 
 def predict_health_condition(model, scaler, audio_file):
     """
@@ -77,9 +80,10 @@ def predict_health_condition(model, scaler, audio_file):
 
     return prediction
 
+
 # Example usage
-X_train =...
-y_train =...
+X_train = ...
+y_train = ...
 model, scaler = train_model(X_train, y_train)
 
 audio_file = "path/to/audio/file.wav"

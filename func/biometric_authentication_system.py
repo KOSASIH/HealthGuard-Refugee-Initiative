@@ -1,8 +1,9 @@
 import cv2
 import numpy as np
-from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Dropout, Flatten
+from tensorflow.keras.models import Sequential
 from tensorflow.keras.optimizers import Adam
+
 
 def extract_fingerprint_features(fingerprint_image):
     """Extract features from the given fingerprint image.
@@ -39,6 +40,7 @@ def extract_fingerprint_features(fingerprint_image):
 
     return np.array(features)
 
+
 def extract_iris_features(iris_image):
     """Extract features from the given iris image.
 
@@ -66,12 +68,15 @@ def extract_iris_features(iris_image):
             intensity = pixel[2]
 
             # Compute the normalized intensity
-            normalized_intensity = (intensity - np.min(image)) / (np.max(image) - np.min(image))
+            normalized_intensity = (intensity - np.min(image)) / (
+                np.max(image) - np.min(image)
+            )
 
             # Append the features
             features.append([x, y, normalized_intensity])
 
     return np.array(features)
+
 
 def train_biometric_model(features, labels):
     """Train a neural network model for biometric authentication.
@@ -85,17 +90,20 @@ def train_biometric_model(features, labels):
     """
     model = Sequential()
     model.add(Flatten(input_shape=(features.shape[1],)))
-    model.add(Dense(128, activation='relu'))
+    model.add(Dense(128, activation="relu"))
     model.add(Dropout(0.5))
-    model.add(Dense(64, activation='relu'))
+    model.add(Dense(64, activation="relu"))
     model.add(Dropout(0.5))
-    model.add(Dense(1, activation='sigmoid'))
+    model.add(Dense(1, activation="sigmoid"))
 
-    model.compile(optimizer=Adam(lr=0.001), loss='binary_crossentropy', metrics=['accuracy'])
+    model.compile(
+        optimizer=Adam(lr=0.001), loss="binary_crossentropy", metrics=["accuracy"]
+    )
 
     model.fit(features, labels, epochs=50, batch_size=32, validation_split=0.2)
 
     return model
+
 
 def predict_biometric_identity(model, features):
     """Predict the biometric identity of the given features using the trained model.
@@ -111,6 +119,7 @@ def predict_biometric_identity(model, features):
     predictions = (predictions > 0.5).astype(int)
 
     return predictions
+
 
 def evaluate_biometric_model(model, features, labels):
     """Evaluate the performance of the trained neural network model for biometric authentication.

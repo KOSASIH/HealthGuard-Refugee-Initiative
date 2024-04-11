@@ -1,8 +1,10 @@
-import unittest
 import json
+import unittest
+
 from app import create_app
 from database import db
 from models import HealthData
+
 
 class TestBackend(unittest.TestCase):
     def setUp(self):
@@ -19,7 +21,9 @@ class TestBackend(unittest.TestCase):
 
     def test_get_health_data(self):
         # Create a new health data record
-        health_data = HealthData(heart_rate=80, blood_pressure="120/80", temperature=37.5)
+        health_data = HealthData(
+            heart_rate=80, blood_pressure="120/80", temperature=37.5
+        )
         db.session.add(health_data)
         db.session.commit()
 
@@ -35,11 +39,7 @@ class TestBackend(unittest.TestCase):
 
     def test_post_health_data(self):
         # Send a POST request to the API to create a new health data record
-        data = {
-            "heart_rate": 80,
-            "blood_pressure": "120/80",
-            "temperature": 37.5
-        }
+        data = {"heart_rate": 80, "blood_pressure": "120/80", "temperature": 37.5}
         response = self.client.post("/api/health-data", json=data)
         self.assertEqual(response.status_code, 201)
 
@@ -49,6 +49,7 @@ class TestBackend(unittest.TestCase):
         self.assertEqual(health_data.heart_rate, 80)
         self.assertEqual(health_data.blood_pressure, "120/80")
         self.assertEqual(health_data.temperature, 37.5)
+
 
 if __name__ == "__main__":
     unittest.main()

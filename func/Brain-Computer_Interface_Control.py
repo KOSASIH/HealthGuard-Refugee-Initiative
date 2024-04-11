@@ -1,6 +1,5 @@
 # func/Brain-Computer_Interface_Control.py
 
-
 import mne
 
 
