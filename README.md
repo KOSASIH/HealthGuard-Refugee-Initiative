@@ -1,6 +1,7 @@
 ![Static Badge](https://img.shields.io/badge/MIT-HackMed-gold)
 ![Static Badge](https://img.shields.io/badge/Refugee-Care-white)
 [![DeepSource](https://app.deepsource.com/gh/KOSASIH/HealthGuard-Refugee-Initiative.svg/?label=active+issues&show_trend=true&token=imWVPP0BPcMg90adUmZyUdGn)](https://app.deepsource.com/gh/KOSASIH/HealthGuard-Refugee-Initiative/)
+[![CodeFactor](https://www.codefactor.io/repository/github/kosasih/healthguard-refugee-initiative/badge)](https://www.codefactor.io/repository/github/kosasih/healthguard-refugee-initiative)
 [![Greetings](https://github.com/KOSASIH/HealthGuard-Refugee-Initiative/actions/workflows/greetings.yml/badge.svg)](https://github.com/KOSASIH/HealthGuard-Refugee-Initiative/actions/workflows/greetings.yml)
 [![CodeQL](https://github.com/KOSASIH/HealthGuard-Refugee-Initiative/actions/workflows/codeql.yml/badge.svg)](https://github.com/KOSASIH/HealthGuard-Refugee-Initiative/actions/workflows/codeql.yml)
 [![Jekyll site CI](https://github.com/KOSASIH/HealthGuard-Refugee-Initiative/actions/workflows/jekyll-docker.yml/badge.svg)](https://github.com/KOSASIH/HealthGuard-Refugee-Initiative/actions/workflows/jekyll-docker.yml)
