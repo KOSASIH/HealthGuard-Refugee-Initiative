@@ -1,3 +1,5 @@
+![Static Badge](https://img.shields.io/badge/MIT-HackMed-gold)
+
 [![DeepSource](https://app.deepsource.com/gh/KOSASIH/HealthGuard-Refugee-Initiative.svg/?label=active+issues&show_trend=true&token=imWVPP0BPcMg90adUmZyUdGn)](https://app.deepsource.com/gh/KOSASIH/HealthGuard-Refugee-Initiative/)
 [![Greetings](https://github.com/KOSASIH/HealthGuard-Refugee-Initiative/actions/workflows/greetings.yml/badge.svg)](https://github.com/KOSASIH/HealthGuard-Refugee-Initiative/actions/workflows/greetings.yml)
 [![CodeQL](https://github.com/KOSASIH/HealthGuard-Refugee-Initiative/actions/workflows/codeql.yml/badge.svg)](https://github.com/KOSASIH/HealthGuard-Refugee-Initiative/actions/workflows/codeql.yml)
