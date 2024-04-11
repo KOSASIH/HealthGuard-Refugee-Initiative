@@ -3,10 +3,12 @@
 import os
 import sys
 import time
-import numpy as np
+
 import mne
-from mne.decoding import SlidingEstimator, GeneralizingEstimator
+import numpy as np
+from mne.decoding import GeneralizingEstimator, SlidingEstimator
 from sklearn.metrics import accuracy_score
+
 
 def create_bci_system():
     """Create a BCI system.
@@ -24,6 +26,7 @@ def create_bci_system():
     bci_system.initialize_software()
 
     return bci_system
+
 
 def load_bci_data(data_path):
     """Load BCI data.
@@ -49,6 +52,7 @@ def load_bci_data(data_path):
 
     return data
 
+
 def preprocess_bci_data(raw_data):
     """Preprocess BCI data.
 
@@ -68,6 +72,7 @@ def preprocess_bci_data(raw_data):
 
     return preprocessed_data
 
+
 def extract_bci_features(preprocessed_data):
     """Extract BCI features.
 
@@ -85,6 +90,7 @@ def extract_bci_features(preprocessed_data):
 
     return features
 
+
 def train_bci_model(features, labels):
     """Train a BCI model.
 
@@ -98,14 +104,17 @@ def train_bci_model(features, labels):
     Returns:
         model (sklearn.pipeline.Pipeline): The trained BCI model.
     """
-    model = Pipeline([
-        ("scaler", StandardScaler()),
-        ("classifier", LinearSVC()),
-    ])
+    model = Pipeline(
+        [
+            ("scaler", StandardScaler()),
+            ("classifier", LinearSVC()),
+        ]
+    )
 
     model.fit(features, labels)
 
     return model
+
 
 def execute_bci_design(bci_system, design, model):
     """Execute a BCI design.
@@ -128,6 +137,7 @@ def execute_bci_design(bci_system, design, model):
 
         bci_system.execute_control(current_prediction)
 
+
 class BCISystem:
     """BCI System Class.
 
@@ -137,21 +147,18 @@ class BCISystem:
     """
 
     def __init__(self):
-        """Initialize the BCI system.
-        """
+        """Initialize the BCI system."""
         self.hardware = None
         self.software = None
         self.design = None
 
     def initialize_hardware(self):
-        """Initialize the BCI hardware.
-        """
+        """Initialize the BCI hardware."""
         # Initialize hardware components
         pass
 
     def initialize_software(self):
-        """Initialize the BCI software.
-        """
+        """Initialize the BCI software."""
         # Initialize software components
         pass
 
@@ -163,7 +170,8 @@ class BCISystem:
         """
         self.design = design
 
-    def collect_data(self):
+    @staticmethod
+    def collect_data():
         """Collect BCI data.
 
         Returns:
