@@ -79,8 +79,7 @@ def load_file(filename, encryption_key=None):
 
     if encryption_key:
         return decrypt_data(data, encryption_key)
-    else:
-        return data
+    return data
 
 def secure_data_transmission(data, key):
     """Transmit data securely by encrypting it with the given key.

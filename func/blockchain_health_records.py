@@ -69,8 +69,7 @@ def new_block():
 def is_valid():
     if is_chain_valid(blockchain):
         return jsonify({"message": "The blockchain is valid"})
-    else:
-        return jsonify({"message": "The blockchain is not valid"})
+    return jsonify({"message": "The blockchain is not valid"})
 
 @app.route('/get_blockchain', methods=['GET'])
 def get_blockchain():

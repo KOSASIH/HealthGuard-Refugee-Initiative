@@ -41,8 +41,7 @@ def check_health_issues():
     simulated_heart_rate = 120
     if simulated_heart_rate > 100:
         return True
-    else:
-        return False
+    return False
 
 def execute_real_time_alert_system():
     """Check for urgent health issues or emergencies and send email alerts to healthcare providers and refugees."""
