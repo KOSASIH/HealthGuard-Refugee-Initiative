@@ -1,5 +1,7 @@
-import requests
 import json
+
+import requests
+
 
 def get_device_data(device_id):
     """
@@ -23,7 +25,10 @@ def get_device_data(device_id):
         return data
     else:
         # If the request was not successful, return an error message
-        return {"error": f"Failed to retrieve data from device {device_id}. Status code: {response.status_code}"}
+        return {
+            "error": f"Failed to retrieve data from device {device_id}. Status code: {response.status_code}"
+        }
+
 
 def send_alert(device_id, message):
     """
@@ -37,7 +42,10 @@ def send_alert(device_id, message):
     bool: True if the alert was sent successfully, False otherwise.
     """
     # Make a POST request to the HealthGuard API to send an alert for the specified IoMT device
-    response = requests.post(f"https://api.healthguard.com/devices/{device_id}/alerts", json={"message": message})
+    response = requests.post(
+        f"https://api.healthguard.com/devices/{device_id}/alerts",
+        json={"message": message},
+    )
 
     # Check if the request was successful
     if response.status_code == 201:
@@ -46,6 +54,7 @@ def send_alert(device_id, message):
     else:
         # If the request was not successful, return False
         return False
+
 
 def integrate_device(device_id):
     """
@@ -58,7 +67,9 @@ def integrate_device(device_id):
     bool: True if the device was integrated successfully, False otherwise.
     """
     # Make a POST request to the HealthGuard API to integrate the specified IoMT device
-    response = requests.post(f"https://api.healthguard.com/devices", json={"id": device_id})
+    response = requests.post(
+        f"https://api.healthguard.com/devices", json={"id": device_id}
+    )
 
     # Check if the request was successful
     if response.status_code == 201:
@@ -68,11 +79,14 @@ def integrate_device(device_id):
         # If the request was not successful, return False
         return False
 
+
 def main():
     # Integrate a new IoMT device into the HealthGuard system
     device_id = "1234567890"
     if integrate_device(device_id):
-        print(f"Device {device_id} has been successfully integrated into the HealthGuard system.")
+        print(
+            f"Device {device_id} has been successfully integrated into the HealthGuard system."
+        )
     else:
         print(f"Failed to integrate device {device_id} into the HealthGuard system.")
 
@@ -88,7 +102,10 @@ def main():
     if send_alert(device_id, message):
         print(f"Alert sent to HealthGuard system for device {device_id}: {message}")
     else:
-        print(f"Failed to send alert to HealthGuard system for device {device_id}: {message}")
+        print(
+            f"Failed to send alert to HealthGuard system for device {device_id}: {message}"
+        )
+
 
 if __name__ == "__main__":
     main()
