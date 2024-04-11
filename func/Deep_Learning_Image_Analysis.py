@@ -1,7 +1,8 @@
-import tensorflow as tf
+import cv2
 import keras
 import numpy as np
-import cv2
+import tensorflow as tf
+
 
 def load_image(image_path):
     """
@@ -15,9 +16,10 @@ def load_image(image_path):
     """
     image = cv2.imread(image_path)
     image = cv2.resize(image, (224, 224))
-    image = image.astype('float32') / 255.0
+    image = image.astype("float32") / 255.0
     image = np.expand_dims(image, axis=0)
     return image
+
 
 def build_cnn(num_classes):
     """
@@ -29,19 +31,26 @@ def build_cnn(num_classes):
     Returns:
     A compiled Keras model.
     """
-    model = keras.Sequential([
-        keras.layers.Conv2D(32, (3, 3), activation='relu', input_shape=(224, 224, 3)),
-        keras.layers.MaxPooling2D((2, 2)),
-        keras.layers.Conv2D(64, (3, 3), activation='relu'),
-        keras.layers.MaxPooling2D((2, 2)),
-        keras.layers.Conv2D(128, (3, 3), activation='relu'),
-        keras.layers.MaxPooling2D((2, 2)),
-        keras.layers.Flatten(),
-        keras.layers.Dense(128, activation='relu'),
-        keras.layers.Dense(num_classes, activation='softmax')
-    ])
-    model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
+    model = keras.Sequential(
+        [
+            keras.layers.Conv2D(
+                32, (3, 3), activation="relu", input_shape=(224, 224, 3)
+            ),
+            keras.layers.MaxPooling2D((2, 2)),
+            keras.layers.Conv2D(64, (3, 3), activation="relu"),
+            keras.layers.MaxPooling2D((2, 2)),
+            keras.layers.Conv2D(128, (3, 3), activation="relu"),
+            keras.layers.MaxPooling2D((2, 2)),
+            keras.layers.Flatten(),
+            keras.layers.Dense(128, activation="relu"),
+            keras.layers.Dense(num_classes, activation="softmax"),
+        ]
+    )
+    model.compile(
+        optimizer="adam", loss="categorical_crossentropy", metrics=["accuracy"]
+    )
     return model
+
 
 def train_cnn(model, x_train, y_train, x_val, y_val, epochs):
     """
@@ -60,6 +69,7 @@ def train_cnn(model, x_train, y_train, x_val, y_val, epochs):
     """
     model.fit(x_train, y_train, validation_data=(x_val, y_val), epochs=epochs)
     return model
+
 
 def predict_image(model, image_path):
     """
