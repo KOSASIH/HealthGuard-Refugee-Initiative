@@ -163,7 +163,8 @@ class BCISystem:
         """
         self.design = design
 
-    def collect_data(self):
+    @staticmethod
+    def collect_data():
         """Collect BCI data.
 
         Returns:
