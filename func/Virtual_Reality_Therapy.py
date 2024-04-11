@@ -1,11 +1,10 @@
 # func/Virtual_Reality_Therapy.py
 
-import os
 import random
 import time
-import gym
-import numpy as np
+
 from pygame import mixer
+
 
 def initialize_vr_environment():
     """Initialize the virtual reality environment.
@@ -26,7 +25,7 @@ def initialize_vr_environment():
     environment_textures = {
         "floor": pygame.image.load("textures/floor.png"),
         "wall": pygame.image.load("textures/wall.png"),
-        "ceiling": pygame.image.load("textures/ceiling.png")
+        "ceiling": pygame.image.load("textures/ceiling.png"),
     }
 
     # Set up the audio environment
@@ -35,6 +34,7 @@ def initialize_vr_environment():
     background_music.play(-1)
 
     return screen, environment_textures
+
 
 def create_virtual_object(texture, x, y, width, height):
     """Create a virtual object.
@@ -57,6 +57,7 @@ def create_virtual_object(texture, x, y, width, height):
 
     return virtual_object
 
+
 def render_environment(screen, environment_textures, virtual_objects):
     """Render the virtual reality environment.
 
@@ -78,6 +79,7 @@ def render_environment(screen, environment_textures, virtual_objects):
 
     pygame.display.flip()
 
+
 def create_relaxation_program():
     """Create a relaxation program.
 
@@ -95,22 +97,23 @@ def create_relaxation_program():
             {
                 "title": "Deep Breathing",
                 "description": "Take a deep breath in through your nose, hold it for a few seconds, and then exhale slowly through your mouth.",
-                "duration": 60
+                "duration": 60,
             },
             {
                 "title": "Progressive Muscle Relaxation",
                 "description": "Tense and then relax each muscle group in your body, starting from your toes and working your way up to your head.",
-                "duration": 90
+                "duration": 90,
             },
             {
                 "title": "Visualization",
                 "description": "Imagine yourself in a peaceful, calming environment, such as a beach or a forest.",
-                "duration": 120
-            }
-        ]
+                "duration": 120,
+            },
+        ],
     }
 
     return relaxation_program
+
 
 def create_exposure_therapy_program(phobia):
     """Create an exposure therapy program.
@@ -132,32 +135,33 @@ def create_exposure_therapy_program(phobia):
             {
                 "title": "Level 1",
                 "description": f"Visualize a small image of a {phobia}.",
-                "duration": 60
+                "duration": 60,
             },
             {
                 "title": "Level 2",
                 "description": f"Visualize a slightly larger image of a {phobia}.",
-                "duration": 120
+                "duration": 120,
             },
             {
                 "title": "Level 3",
                 "description": f"Visualize a larger image of a {phobia} in the distance.",
-                "duration": 180
+                "duration": 180,
             },
             {
                 "title": "Level 4",
                 "description": f"Visualize yourself approaching a {phobia}.",
-                "duration": 240
+                "duration": 240,
             },
             {
                 "title": "Level 5",
                 "description": f"Visualize yourself facing a {phobia} directly.",
-                "duration": 300
-            }
-        ]
+                "duration": 300,
+            },
+        ],
     }
 
     return exposure_therapy_program
+
 
 def execute_program(program):
     """Execute a program.
@@ -190,6 +194,7 @@ def execute_program(program):
                 pygame.quit()
                 return
 
+
 def execute_step(screen, step):
     """Execute a step in a program.
 
@@ -216,6 +221,7 @@ def execute_step(screen, step):
 
     time.sleep(step["duration"])
 
+
 def virtual_reality_therapy():
     """Implement virtual reality therapy.
 
@@ -235,15 +241,17 @@ def virtual_reality_therapy():
         create_virtual_object(environment_textures["floor"], 400, 500, 800, 100),
         create_virtual_object(environment_textures["wall"], 0, 0, 800, 500),
         create_virtual_object(environment_textures["wall"], 800, 0, 800, 500),
-        create_virtual_object(environment_textures["ceiling"], 0, 0, 800, 50)
+        create_virtual_object(environment_textures["ceiling"], 0, 0, 800, 50),
     ]
 
     # Select a program based on the user's needs
-    program = random.choice([
-        create_relaxation_program(),
-        create_exposure_therapy_program("spiders"),
-        create_exposure_therapy_program("heights")
-    ])
+    program = random.choice(
+        [
+            create_relaxation_program(),
+            create_exposure_therapy_program("spiders"),
+            create_exposure_therapy_program("heights"),
+        ]
+    )
 
     # Execute the program
     execute_program(program)
@@ -256,9 +264,10 @@ def virtual_reality_therapy():
         print(step["title"])
         print(step["description"])
         print()
-    
+
     # Close the virtual reality environment
     pygame.quit()
+
 
 if __name__ == "__main__":
     virtual_reality_therapy()

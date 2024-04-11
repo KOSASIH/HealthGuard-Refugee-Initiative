@@ -1,9 +1,10 @@
 import numpy as np
 import qiskit as qk
-from qiskit.visualization import plot_histogram, plot_bloch_vector
 from qiskit.circuit.library import RealAmplitudes
 
 # Define a function to encode healthcare data into a quantum state
+
+
 def encode_healthcare_data(data, num_qubits):
     """
     Encodes healthcare data into a quantum state using amplitude encoding.
@@ -18,12 +19,15 @@ def encode_healthcare_data(data, num_qubits):
     circuit = qk.QuantumCircuit(num_qubits)
     for i in range(num_qubits):
         theta = np.arccos(np.sqrt(data[2**i]))
-        phi = np.arccos(np.sqrt(data[2**i+1]))
+        phi = np.arccos(np.sqrt(data[2**i + 1]))
         circuit.ry(phi, i)
         circuit.rz(theta, i)
     return circuit
 
+
 # Define a function to perform quantum machine learning on healthcare data
+
+
 def quantum_machine_learning(data, num_qubits, num_epochs):
     """
     Performs quantum machine learning on healthcare data using a variational quantum circuit.
@@ -47,7 +51,7 @@ def quantum_machine_learning(data, num_qubits, num_epochs):
         reals.parameters = params
         circuit.append(reals, range(num_qubits))
         circuit.measure_all()
-        job = qk.execute(circuit, Aer.get_backend('qasm_simulator'), shots=1000)
+        job = qk.execute(circuit, Aer.get_backend("qasm_simulator"), shots=1000)
         counts = job.result().get_counts(circuit)
         return 1 - np.sum(counts.values()) / 1000
 
@@ -67,13 +71,14 @@ def quantum_machine_learning(data, num_qubits, num_epochs):
     # Evaluate the trained variational quantum circuit
     circuit.append(reals, range(num_qubits))
     circuit.measure_all()
-    job = qk.execute(circuit, Aer.get_backend('qasm_simulator'), shots=1000)
+    job = qk.execute(circuit, Aer.get_backend("qasm_simulator"), shots=1000)
     counts = job.result().get_counts(circuit)
     return reals, 1 - np.sum(counts.values()) / 1000
+
 
 # Example usage
 data = np.random.rand(16, 4)
 num_qubits = 4
 num_epochs = 100
 circuit, loss = quantum_machine_learning(data, num_qubits, num_epochs)
-print('Training loss:', loss)
+print("Training loss:", loss)

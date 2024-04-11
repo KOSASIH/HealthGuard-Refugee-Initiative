@@ -1,8 +1,9 @@
 import os
+
 import numpy as np
 import qiskit as qs
-from qiskit.visualization import plot_histogram, plot_bloch_multivector
-from qiskit.circuit.library import QFT
+from qiskit.visualization import plot_histogram
+
 
 def load_quantum_health_data(data_dir):
     """
@@ -14,9 +15,10 @@ def load_quantum_health_data(data_dir):
     Returns:
     pd.DataFrame: Raw quantum health simulation data.
     """
-    raw_data_path = os.path.join(data_dir, 'raw', 'quantum_health_data.csv')
+    raw_data_path = os.path.join(data_dir, "raw", "quantum_health_data.csv")
     raw_data = pd.read_csv(raw_data_path)
     return raw_data
+
 
 def process_quantum_health_data(raw_data):
     """
@@ -30,8 +32,11 @@ def process_quantum_health_data(raw_data):
     """
     interim_data = raw_data.copy()
     # Example processing step: Extract relevant columns
-    interim_data = interim_data[['PatientID', 'InitialState', 'CircuitDepth', 'MeasurementOutcomes']]
+    interim_data = interim_data[
+        ["PatientID", "InitialState", "CircuitDepth", "MeasurementOutcomes"]
+    ]
     return interim_data
+
 
 def simulate_quantum_health_scenario(interim_data):
     """
@@ -43,10 +48,10 @@ def simulate_quantum_health_scenario(interim_data):
     Returns:
     qs.QuantumCircuit: Quantum circuit simulating the health scenario.
     """
-    patient_id = interim_data['PatientID'][0]
-    initial_state = np.array(eval(interim_data['InitialState'][0]), dtype=complex)
-    circuit_depth = interim_data['CircuitDepth'][0]
-    measurement_outcomes = eval(interim_data['MeasurementOutcomes'][0])
+    patient_id = interim_data["PatientID"][0]
+    initial_state = np.array(eval(interim_data["InitialState"][0]), dtype=complex)
+    circuit_depth = interim_data["CircuitDepth"][0]
+    measurement_outcomes = eval(interim_data["MeasurementOutcomes"][0])
 
     qc = qs.QuantumCircuit(len(initial_state))
     qc.initialize(initial_state, range(len(initial_state)))
@@ -58,6 +63,7 @@ def simulate_quantum_health_scenario(interim_data):
 
     return qc
 
+
 def visualize_quantum_health_simulation(qc):
     """
     Visualize the quantum health simulation.
@@ -68,9 +74,10 @@ def visualize_quantum_health_simulation(qc):
     Returns:
     None
     """
-    qc_sim = qs.execute(qc, qs.Aer.get_backend('qasm_simulator'), shots=1000).result()
+    qc_sim = qs.execute(qc, qs.Aer.get_backend("qasm_simulator"), shots=1000).result()
     counts = qc_sim.get_counts(qc)
     plot_histogram(counts)
+
 
 def run_quantum_health_simulation(interim_data):
     """

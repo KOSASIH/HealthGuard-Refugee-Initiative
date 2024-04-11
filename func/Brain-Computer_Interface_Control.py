@@ -1,13 +1,6 @@
 # func/Brain-Computer_Interface_Control.py
 
-import os
-import sys
-import time
-
 import mne
-import numpy as np
-from mne.decoding import GeneralizingEstimator, SlidingEstimator
-from sklearn.metrics import accuracy_score
 
 
 def create_bci_system():

@@ -1,10 +1,11 @@
 import os
-import base64
+
 from cryptography.fernet import Fernet
+from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
-from cryptography.hazmat.backends import default_backend
-from flask import current_app, request, jsonify
+from flask import current_app, jsonify, request
+
 
 def generate_key():
     """
@@ -17,13 +18,14 @@ def generate_key():
     kdf = PBKDF2HMAC(
         algorithm=hashes.SHA256(),
         length=32,
-salt=salt,
+        salt=salt,
         iterations=100000,
-        backend=default_backend()
+        backend=default_backend(),
     )
     password = current_app.config["ENCRYPTION_PASSWORD"].encode()
     key = kdf.derive(password)
     return key
+
 
 def encrypt_data(data):
     """
@@ -39,6 +41,7 @@ def encrypt_data(data):
     f = Fernet(key)
     encrypted_data = f.encrypt(bytes(json.dumps(data), "utf-8")).decode()
     return encrypted_data
+
 
 def decrypt_data(encrypted_data):
     """
@@ -56,6 +59,7 @@ def decrypt_data(encrypted_data):
     data = json.loads(f.decrypt(encrypted_data).decode())
     return data
 
+
 def authenticate():
     """
     Authenticate the user.
@@ -72,6 +76,7 @@ def authenticate():
 
     return True
 
+
 def anonymize_data(data):
     """
     Anonymize the given data by removing any personally identifiable information.
@@ -86,9 +91,10 @@ def anonymize_data(data):
         "heart_rate": data["heart_rate"],
         "blood_pressure": data["blood_pressure"],
         "temperature": data["temperature"],
-        "timestamp": data["timestamp"]
+        "timestamp": data["timestamp"],
     }
     return anonymized_data
+
 
 def store_encrypted_data(data):
     """
@@ -108,6 +114,7 @@ def store_encrypted_data(data):
 
     # Store the encrypted data and anonymized data in the database
     # ...
+
 
 def retrieve_decrypted_data(encrypted_data_id):
     """

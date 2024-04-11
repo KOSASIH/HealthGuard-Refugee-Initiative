@@ -1,17 +1,15 @@
 # func/Cognitive_Computing_Diagnostics.py
 
-import os
-import sys
-import time
-import numpy as np
-import pandas as pd
 import re
+
 import nltk
+import pandas as pd
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, roc_auc_score
+
 
 def preprocess_text(text):
     """Preprocess text.
@@ -26,8 +24,8 @@ def preprocess_text(text):
         preprocessed_text (str): The preprocessed text.
     """
     # Remove special characters and digits
-    text = re.sub(r'[^\w\s]', '', text)
-    text = re.sub(r'\d+', '', text)
+    text = re.sub(r"[^\w\s]", "", text)
+    text = re.sub(r"\d+", "", text)
 
     # Convert to lowercase
     text = text.lower()
@@ -48,6 +46,7 @@ def preprocess_text(text):
 
     return preprocessed_text
 
+
 def extract_features(texts):
     """Extract features from text.
 
@@ -64,6 +63,7 @@ def extract_features(texts):
     features = vectorizer.fit_transform(texts)
 
     return features
+
 
 def train_diagnostic_model(features, labels):
     """Train diagnostic model.
@@ -83,6 +83,7 @@ def train_diagnostic_model(features, labels):
 
     return model
 
+
 def predict_diagnosis(model, text):
     """Predict diagnosis.
 
@@ -101,6 +102,7 @@ def predict_diagnosis(model, text):
     diagnosis = model.predict(features)[0]
 
     return diagnosis
+
 
 def evaluate_diagnostic_model(model, texts, labels):
     """Evaluate diagnostic model.
@@ -123,6 +125,7 @@ def evaluate_diagnostic_model(model, texts, labels):
     metrics = {"accuracy": accuracy, "auc": auc}
 
     return metrics
+
 
 def cognitive_computing_diagnostics(data_path):
     """Implement cognitive computing diagnostics.

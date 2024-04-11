@@ -1,7 +1,7 @@
 import pickle
+
 import numpy as np
-from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import accuracy_score
+
 
 def load_diagnosis_model():
     """
@@ -13,6 +13,7 @@ def load_diagnosis_model():
     with open("models/diagnosis_model.pkl", "rb") as f:
         model = pickle.load(f)
     return model
+
 
 def diagnose_condition(biometric_data):
     """

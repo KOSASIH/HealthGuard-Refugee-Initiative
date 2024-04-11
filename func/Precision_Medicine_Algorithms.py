@@ -1,15 +1,12 @@
 # func/Precision_Medicine_Algorithms.py
 
-import os
-import sys
-import time
-import numpy as np
 import pandas as pd
 import scipy.stats as stats
 from sklearn.cluster import KMeans
 from sklearn.decomposition import PCA
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import accuracy_score, roc_auc_score
+from sklearn.metrics import accuracy_score
+
 
 def load_precision_medicine_data(data_path):
     """Load precision medicine data.
@@ -27,6 +24,7 @@ def load_precision_medicine_data(data_path):
     data = pd.read_csv(data_path)
 
     return data
+
 
 def preprocess_precision_medicine_data(data):
     """Preprocess precision medicine data.
@@ -51,9 +49,12 @@ def preprocess_precision_medicine_data(data):
 
     # Normalize the data
     # For example, scale the data to have mean 0 and variance 1
-    preprocessed_data = (preprocessed_data - preprocessed_data.mean()) / preprocessed_data.std()
+    preprocessed_data = (
+        preprocessed_data - preprocessed_data.mean()
+    ) / preprocessed_data.std()
 
     return preprocessed_data
+
 
 def cluster_precision_medicine_data(preprocessed_data):
     """Cluster precision medicine data.
@@ -76,6 +77,7 @@ def cluster_precision_medicine_data(preprocessed_data):
     clusters = kmeans.fit_predict(pca_data)
 
     return clusters
+
 
 def predict_precision_medicine_outcome(preprocessed_data, clusters):
     """Predict precision medicine outcome.
@@ -101,6 +103,7 @@ def predict_precision_medicine_outcome(preprocessed_data, clusters):
 
     return predictions
 
+
 def evaluate_precision_medicine_algorithm(predictions, true_outcomes):
     """Evaluate precision medicine algorithm.
 
@@ -116,12 +119,17 @@ def evaluate_precision_medicine_algorithm(predictions, true_outcomes):
     """
     metrics = {
         "accuracy": accuracy_score(true_outcomes, predictions),
-        "precision": stats.weighted_average(predictions, true_outcomes, average="binary"),
+        "precision": stats.weighted_average(
+            predictions, true_outcomes, average="binary"
+        ),
         "recall": stats.weighted_average(predictions, true_outcomes, average="binary"),
-        "f1_score": stats.hmean([2 * predictions * true_outcomes / (predictions + true_outcomes), 1])
+        "f1_score": stats.hmean(
+            [2 * predictions * true_outcomes / (predictions + true_outcomes), 1]
+        ),
     }
 
     return metrics
+
 
 def precision_medicine_algorithms(data_path):
     """Implement precision medicine algorithms.
