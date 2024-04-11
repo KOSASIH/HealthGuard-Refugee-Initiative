@@ -54,6 +54,6 @@ For more information about the HealthGuard Refugee Initiative, please contact th
 ```
 # Join Us !! 
 
-https://mithackmedicine-refugee-hackathon.mn.co/share/_MsrkOmWgHKcAp12?utm_source=manual
+Join and register [here](https://mithackmedicine-refugee-hackathon.mn.co/share/_MsrkOmWgHKcAp12?utm_source=manual) 
 
 This README provides a concise overview of the HealthGuard Refugee Initiative repository, including its purpose, features, how to get started, contribution guidelines, licensing information, and contact details. Adjustments can be made based on specific project requirements and preferences.
