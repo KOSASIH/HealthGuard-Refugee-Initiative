@@ -1,10 +1,12 @@
 # func/real_time_alert_system.py
 
-import time
-import schedule
 import smtplib
+import time
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+
+import schedule
+
 
 def send_email_alert(subject, message, recipients):
     """Send an email alert to the provided recipients."""
@@ -14,14 +16,14 @@ def send_email_alert(subject, message, recipients):
 
     # Create the email message
     msg = MIMEMultipart()
-    msg['From'] = sender_email
-    msg['To'] = ', '.join(recipients)
-    msg['Subject'] = subject
-    msg.attach(MIMEText(message, 'plain'))
+    msg["From"] = sender_email
+    msg["To"] = ", ".join(recipients)
+    msg["Subject"] = subject
+    msg.attach(MIMEText(message, "plain"))
 
     # Send the email
     try:
-        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server = smtplib.SMTP("smtp.gmail.com", 587)
         server.starttls()
         server.login(sender_email, sender_password)
         text = msg.as_string()
@@ -30,6 +32,7 @@ def send_email_alert(subject, message, recipients):
         print("Email alert sent to:", recipients)
     except Exception as e:
         print("Error sending email alert:", e)
+
 
 def check_health_issues():
     """Check for urgent health issues or emergencies."""
@@ -41,8 +44,8 @@ def check_health_issues():
     simulated_heart_rate = 120
     if simulated_heart_rate > 100:
         return True
-    else:
-        return False
+    return False
+
 
 def execute_real_time_alert_system():
     """Check for urgent health issues or emergencies and send email alerts to healthcare providers and refugees."""
@@ -53,6 +56,7 @@ def execute_real_time_alert_system():
         recipients = ["healthcare_provider@example.com", "refugee@example.com"]
         send_email_alert(subject, message, recipients)
 
+
 def main():
     # Schedule the real-time alert system to check for health issues every minute
     schedule.every(1).minutes.do(execute_real_time_alert_system)
@@ -60,6 +64,7 @@ def main():
     while True:
         schedule.run_pending()
         time.sleep(1)
+
 
 if __name__ == "__main__":
     main()

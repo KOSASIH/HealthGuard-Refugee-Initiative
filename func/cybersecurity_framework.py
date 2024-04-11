@@ -1,7 +1,9 @@
+import base64
 import os
 import secrets
-import base64
+
 from cryptography.fernet import Fernet
+
 
 def generate_random_password(length=16):
     """Generate a random password of the given length.
@@ -14,6 +16,7 @@ def generate_random_password(length=16):
     """
     return secrets.token_hex(length // 2)
 
+
 def generate_encryption_key():
     """Generate a new encryption key for encrypting and decrypting data.
 
@@ -21,6 +24,7 @@ def generate_encryption_key():
         (bytes) The encryption key.
     """
     return Fernet.generate_key()
+
 
 def encrypt_data(data, encryption_key):
     """Encrypt the given data using the provided encryption key.
@@ -35,6 +39,7 @@ def encrypt_data(data, encryption_key):
     f = Fernet(encryption_key)
     return f.encrypt(data)
 
+
 def decrypt_data(encrypted_data, encryption_key):
     """Decrypt the given encrypted data using the provided encryption key.
 
@@ -44,9 +49,10 @@ def decrypt_data(encrypted_data, encryption_key):
 
     Returns:
         (bytes) The decrypted data.
-   """
+    """
     f = Fernet(encryption_key)
     return f.decrypt(encrypted_data)
+
 
 def secure_file_storage(filename, data, encryption_key=None):
     """Store the file securely if an encryption key is provided, or in plain text otherwise.
@@ -58,11 +64,12 @@ def secure_file_storage(filename, data, encryption_key=None):
     """
     if encryption_key:
         encrypted_data = encrypt_data(data, encryption_key)
-        with open(filename, 'wb') as f:
+        with open(filename, "wb") as f:
             f.write(encrypted_data)
     else:
-        with open(filename, 'wb') as f:
+        with open(filename, "wb") as f:
             f.write(data)
+
 
 def load_file(filename, encryption_key=None):
     """Load the file securely if an encryption key is provided, or in plain text otherwise.
@@ -74,13 +81,13 @@ def load_file(filename, encryption_key=None):
     Returns:
         (bytes) The data in the file.
     """
-    with open(filename, 'rb') as f:
+    with open(filename, "rb") as f:
         data = f.read()
 
     if encryption_key:
         return decrypt_data(data, encryption_key)
-    else:
-        return data
+    return data
+
 
 def secure_data_transmission(data, key):
     """Transmit data securely by encrypting it with the given key.
@@ -95,6 +102,7 @@ def secure_data_transmission(data, key):
     encrypted_data = encrypt_data(data, key)
     return base64.b64encode(encrypted_data).decode()
 
+
 def receive_secure_data(encrypted_data_base64, key):
     """Receive data securely by decrypting it with the given key.
 
@@ -107,6 +115,7 @@ def receive_secure_data(encrypted_data_base64, key):
     """
     encrypted_data = base64.b64decode(encrypted_data_base64.encode())
     return decrypt_data(encrypted_data, key)
+
 
 def secure_system_access(username, password, encryption_key):
     """Authenticate users securely by encrypting and comparing their credentials.
@@ -127,13 +136,16 @@ def secure_system_access(username, password, encryption_key):
     f = Fernet(key)
     encrypted_password = f.encrypt(hashed_password)
 
-    with open('user_credentials.txt', 'rb') as file:
+    with open("user_credentials.txt", "rb") as file:
         stored_password = file.read()
 
     if stored_password:
         stored_password = base64.b64decode(stored_password)
         stored_password = f.decrypt(stored_password)
 
-        if stored_password.decode() == username and hashed_password == encrypted_password:
+        if (
+            stored_password.decode() == username
+            and hashed_password == encrypted_password
+        ):
             return True
     return False
