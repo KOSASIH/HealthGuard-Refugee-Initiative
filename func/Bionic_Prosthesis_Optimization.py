@@ -1,11 +1,8 @@
 # func/Bionic_Prosthesis_Optimization.py
 
-import numpy as np
 import torch
 from torch import nn
 from torch.optim import Adam
-from torch.utils.data import DataLoader, TensorDataset
-from tqdm import tqdm
 
 def preprocess_data(data):
     """Preprocess the prosthesis sensor data.

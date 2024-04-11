@@ -1,8 +1,7 @@
 import os
 import numpy as np
 import qiskit as qs
-from qiskit.visualization import plot_histogram, plot_bloch_multivector
-from qiskit.circuit.library import QFT
+from qiskit.visualization import plot_histogram
 
 def load_quantum_health_data(data_dir):
     """

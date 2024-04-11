@@ -1,10 +1,7 @@
 # func/Virtual_Reality_Therapy.py
 
-import os
 import random
 import time
-import gym
-import numpy as np
 from pygame import mixer
 
 def initialize_vr_environment():

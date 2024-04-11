@@ -1,17 +1,10 @@
 import pandas as pd
-import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-import scipy.stats as stats
 import scipy.cluster.hierarchy as sch
 import sklearn.decomposition
-import sklearn.cluster
 import sklearn.linear_model
 import sklearn.metrics
-import statsmodels.api as sm
-import statsmodels.formula.api as smf
-import matplotlib.lines as mlines
-import matplotlib.patches as mpatches
 
 def load_genomic_data(file_path):
     """

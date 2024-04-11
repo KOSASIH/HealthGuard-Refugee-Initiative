@@ -1,8 +1,4 @@
 import cv2
-import mediapipe as mp
-import numpy as np
-import time
-import torch
 import math
 from utils import transform_to_3d
 

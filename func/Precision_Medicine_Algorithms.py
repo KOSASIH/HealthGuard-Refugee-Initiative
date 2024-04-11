@@ -1,15 +1,11 @@
 # func/Precision_Medicine_Algorithms.py
 
-import os
-import sys
-import time
-import numpy as np
 import pandas as pd
 import scipy.stats as stats
 from sklearn.cluster import KMeans
 from sklearn.decomposition import PCA
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import accuracy_score, roc_auc_score
+from sklearn.metrics import accuracy_score
 
 def load_precision_medicine_data(data_path):
     """Load precision medicine data.

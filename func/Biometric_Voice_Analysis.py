@@ -1,11 +1,6 @@
 import librosa
 import numpy as np
-import sklearn.decomposition
 import sklearn.ensemble
-import sklearn.linear_model
-import sklearn.metrics
-import sklearn.model_selection
-import sklearn.pipeline
 import sklearn.preprocessing
 
 def extract_features(audio_file):

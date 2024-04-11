@@ -1,6 +1,5 @@
 import numpy as np
 import qiskit as qk
-from qiskit.visualization import plot_histogram, plot_bloch_vector
 from qiskit.circuit.library import RealAmplitudes
 
 # Define a function to encode healthcare data into a quantum state

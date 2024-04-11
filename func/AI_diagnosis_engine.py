@@ -1,7 +1,5 @@
 import pickle
 import numpy as np
-from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import accuracy_score
 
 def load_diagnosis_model():
     """

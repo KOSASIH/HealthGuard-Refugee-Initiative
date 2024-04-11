@@ -1,14 +1,10 @@
 # func/Exoskeleton_Assistive_Technology.py
 
-import os
-import sys
 import time
 import numpy as np
-import pandas as pd
 import pybullet as p
 import pybullet_data
 import traci
-from traci.constants import Lane, Link, VehicleType, Acceleration, LaneChangeMode, SpeedMode
 
 def initialize_exoskeleton(urdf_path, base_position, base_orientation):
     """Initialize exoskeleton.

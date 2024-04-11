@@ -1,6 +1,5 @@
 import unittest
 import json
-import requests
 from app import create_app
 from database import db
 from models import HealthData
