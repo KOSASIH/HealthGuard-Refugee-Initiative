@@ -1,6 +1,8 @@
+import time
+
 import cv2
 import numpy as np
-import time
+
 
 def start_telemetry_stream(video_source, telemetry_port):
     """
@@ -26,7 +28,7 @@ def start_telemetry_stream(video_source, telemetry_port):
 
     # Initialize the telemetry socket
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    s.bind(('', telemetry_port))
+    s.bind(("", telemetry_port))
     s.listen(1)
 
     while True:
@@ -42,7 +44,7 @@ def start_telemetry_stream(video_source, telemetry_port):
         frame = cv2.resize(frame, (224, 224))
 
         # Convert the frame to a byte array for telemetry
-        frame_bytes = cv2.imencode('.jpg', frame)[1].tobytes()
+        frame_bytes = cv2.imencode(".jpg", frame)[1].tobytes()
 
         # Send the telemetry data to the specified port
         conn, addr = s.accept()
@@ -52,8 +54,9 @@ def start_telemetry_stream(video_source, telemetry_port):
     # Release the video stream
     cap.release()
 
+
 # Example usage:
-if __name__ == '__main__':
+if __name__ == "__main__":
     video_source = 0  # Use the first available camera
     telemetry_port = 12345  # Use port 12345 for telemetry
     start_telemetry_stream(video_source, telemetry_port)
